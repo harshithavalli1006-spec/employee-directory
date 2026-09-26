@@ -14,6 +14,7 @@ public class EmployeeController {
     public EmployeeController() {
         employees.add(new Employee(1L, "Harshitha", "Software Engineer"));
         employees.add(new Employee(2L, "Rahul", "Data Analyst"));
+        employees.add(new Employee(3L, "Priya", "ML Engineer"));
     }
 
     @GetMapping
