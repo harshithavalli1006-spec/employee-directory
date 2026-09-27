@@ -28,4 +28,8 @@ public class EmployeeController {
         employees.add(employee);
         return employee;
     }
+    @GetMapping("/health")
+    public String health() {
+    return "UP";
+    }
 }
