@@ -1,0 +1,25 @@
+- name: Install Java 17
+  ansible.builtin.command:
+    cmd: brew install openjdk@17
+  args:
+    creates: /opt/homebrew/opt/openjdk@17/bin/java
+
+- name: Create application directory
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/employee-directory-app"
+    state: directory
+    mode: '0755'
+
+- name: Copy Employee Directory JAR
+  ansible.builtin.copy:
+    src: "{{ app_jar }}"
+    dest: "{{ ansible_user_dir }}/employee-directory-app/employee-directory.jar"
+    mode: '0755'
+  notify: Restart employee directory
+
+- name: Create macOS service definition
+  ansible.builtin.template:
+    src: employee-directory.plist.j2
+    dest: "{{ ansible_user_dir }}/Library/LaunchAgents/com.employee.directory.plist"
+    mode: '0644'
+  notify: Restart employee directory

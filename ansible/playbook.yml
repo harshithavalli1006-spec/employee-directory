@@ -1,0 +1,6 @@
+- name: Configure Employee Directory application
+  hosts: app
+  become: false
+
+  roles:
+    - employee_app

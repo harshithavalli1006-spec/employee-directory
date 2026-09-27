@@ -1,0 +1,4 @@
+- name: Restart employee directory
+  ansible.builtin.shell: |
+    launchctl unload "{{ ansible_user_dir }}/Library/LaunchAgents/com.employee.directory.plist" 2>/dev/null || true
+    launchctl load "{{ ansible_user_dir }}/Library/LaunchAgents/com.employee.directory.plist"
